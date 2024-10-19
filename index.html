@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .img {
+            background: url("calculator.jpg");
+            background-size: cover;
+            width: 314px;
+            height: 436px;
+        }
+
+        #display {
+            margin-top: 30px;
+            width: 263px;
+            height: 80px;
+            margin-left: 29px;
+            background-color: rgb(246, 226, 226);
+            font-size: xx-large;
+        }
+
+        .off {
+            margin-top: 25px;
+            margin-left: 28px;
+            width: 44px;
+            height: 45px;
+            background-color: transparent;
+        }
+
+        .mr {
+            margin-left: 6px;
+            width: 44px;
+            height: 46px;
+            background-color: transparent;
+
+        }
+
+        .M,
+        .red {
+            margin-left: 6px;
+            width: 45px;
+            height: 46px;
+            background-color: transparent;
+        }
+
+        .red1 {
+            width: 45px
+        }
+
+        .clear1,
+        .mod1,
+        .spure1,
+        .addsub1 {
+            margin-top: 9px;
+            margin-left: 28px;
+            width: 44px;
+            height: 45px;
+            background-color: transparent;
+
+        }
+
+        .result1 {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="img">
+        <div id="display"></div>
+        <button class="off reda" onclick="clearDisplay()"></button>
+        <button class="mr red"></button>
+        <button class="M red"></button>
+        <button class="m red"></button>
+        <button class="divide red"  onclick="addToDisplay('/')"></button>
+        <br>
+        <button class="clear clear1 red1" onclick="clearDisplay()"></button>
+        <button class="seven red red1" onclick="addToDisplay('7')"></button>
+        <button class="eigth red red1" onclick="addToDisplay('8')"></button>
+        <button class="nine red red1" onclick="addToDisplay('9')"></button>
+        <button class="mul red red1" onclick="addToDisplay('*')"></button>
+        <br>
+        <button class="mod mod1 red" onclick="addToDisplay('%')"></button>
+        <button class="four red" onclick="addToDisplay('4')"></button>
+        <button class="five red" onclick="addToDisplay('5')"></button>
+        <button class="six red" onclick="addToDisplay('6')"></button>
+        <button class="sub red" onclick="addToDisplay('-')"></button>
+        <br>
+        <button class="squre spure1 red" onclick="squareNumber()"></button>
+        <button class="one red" onclick="addToDisplay('1')"></button>
+        <button class="two red" onclick="addToDisplay('2')"></button>
+        <button class="three red" onclick="addToDisplay('3')"></button>
+        <button class="add red" onclick="addToDisplay('+')"></button>
+        <br>
+        <button class="addsub addsub1 red"  onclick="toggleSign()"></button>
+        <button class="zero red" onclick="addToDisplay('0')"></button>
+        <button class="bot red" onclick="addToDisplay('.')"></button>
+        <button class="result result1 red" onclick="calculate()"></button>
+    </div>
+    <script>
+        let display = document.getElementById('display');
+        let currentInput = '';
+
+        function addToDisplay(value) {
+            if (display.innerHTML === '0') {
+                display.innerHTML = value;
+            } else {
+                display.innerHTML += value;
+            }
+            currentInput += value;
+        }
+
+        function clearDisplay() {
+            display.innerHTML = '0';
+            currentInput = '';
+        }
+
+        function calculate() {
+            try {
+              
+                let result = eval(currentInput);
+                display.innerHTML = result;
+                currentInput = result.toString();
+            } catch (error) {
+                display.innerHTML = 'Error';
+                currentInput = '';
+            }
+        }
+
+        function squareNumber() {
+            let result = Math.pow(parseFloat(currentInput), 2);
+            display.innerHTML = result;
+            currentInput = result.toString();
+        }
+
+        function toggleSign() {
+            if (currentInput[0] === '-') {
+                currentInput = currentInput.slice(1);
+            } else {
+                currentInput = '-' + currentInput;
+            }
+            display.innerHTML = currentInput;
+        }
+    </script>
+</body>
+
+</html>
